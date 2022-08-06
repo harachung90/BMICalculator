@@ -24,8 +24,22 @@ public class BMICalculator extends JFrame {
                 double heightInput = (Double.parseDouble((heightText.getText())) / 100);
                 double weightInput = (Double.parseDouble((weightText.getText())));
 
-                double result = weightInput / (heightInput * heightInput);
-                resultLabel.setText("Your BMI is: " + String.format("%.2f", result));
+                double result = Math.round((weightInput / (heightInput * heightInput)) * 100.0) / 100.0;
+                String range = "";
+
+
+                if (result < 18.50 ) {
+                    range = "Underweight";
+                } else if (result > 18.50 && result < 25.00) {
+                    range = "Healthy";
+                } else if (result > 25.00 && result < 30.00) {
+                    range = "Overweight";
+                } else {
+                    range = "Obese";
+                }
+
+                resultLabel.setText("Your BMI is: " + result + "\nYou are " + range + ".");
+
             }
         });
     }
